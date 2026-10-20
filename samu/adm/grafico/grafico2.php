@@ -1,19 +1,11 @@
-<?PHP
+<?php
 header('Content-Type: text/html; charset=utf-8');
-?>
-<?php
-session_start();
-include_once("../seguranca.php");
-
-?>
-<?php
+require_once __DIR__ . '/../seguranca.php';
+seguranca_adm();
 require_once __DIR__ . '/../../conexao/conexao.php';
-mysqli_set_charset($conn, 'utf8');
-
-$query = "SELECT ocorrencia, COUNT(*) AS number FROM clinica GROUP BY ocorrencia";
-$result = mysqli_query($conn, $query);
+require_once __DIR__ . '/../../conexao/occurrence-stats.php';
+$chartRows = samu_occurrence_chart_rows($conn);
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -27,21 +19,12 @@ $result = mysqli_query($conn, $query);
         <div id="piechart" role="img" aria-label="Distribuição das ocorrências por especialidade"></div>
         <ul class="chart-legend" id="chart-legend" aria-label="Legenda das especialidades"></ul>
     </main>
-
     <script src="https://www.gstatic.com/charts/loader.js"></script>
-    <script src="../../js/occurrence-chart.js"></script>
+    <script src="../../js/occurrence-chart.js?v=2"></script>
     <script>
         google.charts.load('current', { packages: ['corechart'], language: 'pt-BR' });
         google.charts.setOnLoadCallback(function () {
-            renderOccurrenceChart([
-                ['ocorrencia', 'Number'],
-                <?php
-                while($row = mysqli_fetch_array($result))
-                {
-                    echo "['".$row["ocorrencia"]."', ".$row["number"]."],";
-                }
-                ?>
-            ]);
+            renderOccurrenceChart(<?php echo json_encode($chartRows, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_THROW_ON_ERROR); ?>);
         });
     </script>
 </body>

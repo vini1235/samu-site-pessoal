@@ -56,7 +56,7 @@
       resizeTimer = window.setTimeout(draw, 100);
     }
 
-    if (rows.length > 1) {
+    if (rows.slice(1).some(function (row) { return Number(row[1]) > 0; })) {
       data = google.visualization.arrayToDataTable(rows);
       chart = new google.visualization.PieChart(plot);
       rows.slice(1).forEach(function (row, index) {
@@ -67,7 +67,7 @@
         swatch.style.backgroundColor = colors[index % colors.length];
         swatch.setAttribute('aria-hidden', 'true');
         label.className = 'chart-legend-label';
-        label.textContent = row[0];
+        label.textContent = row[0] + ' — ' + Number(row[1]).toLocaleString('pt-BR');
         item.appendChild(swatch);
         item.appendChild(label);
         legend.appendChild(item);

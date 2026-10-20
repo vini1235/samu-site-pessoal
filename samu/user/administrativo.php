@@ -128,7 +128,7 @@ seguranca_user();
             <div class="row g-4 mb-5">
                 <div class="col-lg-12">
                     <div class="chart-container">
-                        <iframe title="Gráfico de ocorrências por especialidade" src="../adm/grafico/grafico2.php" width="100%" height="500"></iframe>
+                        <iframe title="Gráfico de ocorrências por especialidade" src="grafico/grafico2.php" width="100%" height="500"></iframe>
                     </div>
                 </div>
             </div>
@@ -241,7 +241,7 @@ seguranca_user();
             <div class="row g-4 mb-5">
                 <div class="col-lg-10 mx-auto">
                     <div class="map-container">
-                        <iframe title="Mapa de atendimento do SAMU em Jandira" src="https://www.google.com/maps/d/u/0/embed?mid=1U5UjdisEY0iYfY6hRymR0tuOhmI" width="100%" height="500"></iframe>
+                        <iframe title="Mapa das unidades de saúde de Jandira" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d29262.848326012183!2d-46.90715165!3d-23.53767965!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sunidades%20de%20sa%C3%BAde%20em%20Jandira%20SP!5e0!3m2!1spt-BR!2sbr!4v1792525391214!5m2!1spt-BR!2sbr" width="100%" height="500"></iframe>
                     </div>
                 </div>
             </div>

@@ -1,31 +1,11 @@
-<?PHP
-// Use only the configured database for this personal copy.
-require_once __DIR__ . '/../../conexao/conexao.php';
-
+<?php
 header('Content-Type: text/html; charset=utf-8');
+require_once __DIR__ . '/../seguranca.php';
+seguranca_user();
+require_once __DIR__ . '/../../conexao/conexao.php';
+require_once __DIR__ . '/../../conexao/occurrence-stats.php';
+$chartRows = samu_occurrence_chart_rows($conn);
 ?>
-<?php
-session_start();
-include_once("../seguranca.php");
-
-?>
-<?php
-$connect = $conn;
-$query = "SELECT ocorrencia, count(*) as number FROM clinica GROUP BY ocorrencia
-UNION
-SELECT ocorrencia, count(*) as number FROM trauma GROUP BY ocorrencia
-UNION
-SELECT ocorrencia, count(*) as number FROM obstetricia GROUP BY ocorrencia
-UNION
-SELECT ocorrencia, count(*) as number FROM ortopedia GROUP BY ocorrencia
-UNION
-SELECT ocorrencia, count(*) as number FROM pediatria GROUP BY ocorrencia
-UNION
-SELECT ocorrencia, count(*) as number FROM psiquiatria GROUP BY ocorrencia";
-mysqli_set_charset($connect,'utf8');
-$result = mysqli_query($connect, $query);
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -39,21 +19,12 @@ $result = mysqli_query($connect, $query);
         <div id="piechart" role="img" aria-label="Distribuição das ocorrências por especialidade"></div>
         <ul class="chart-legend" id="chart-legend" aria-label="Legenda das especialidades"></ul>
     </main>
-
     <script src="https://www.gstatic.com/charts/loader.js"></script>
-    <script src="../../js/occurrence-chart.js"></script>
+    <script src="../../js/occurrence-chart.js?v=2"></script>
     <script>
         google.charts.load('current', { packages: ['corechart'], language: 'pt-BR' });
         google.charts.setOnLoadCallback(function () {
-            renderOccurrenceChart([
-                ['ocorrencia', 'Number'],
-                <?php
-                while($row = mysqli_fetch_array($result))
-                {
-                    echo "['".$row["ocorrencia"]."', ".$row["number"]."],";
-                }
-                ?>
-            ]);
+            renderOccurrenceChart(<?php echo json_encode($chartRows, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_THROW_ON_ERROR); ?>);
         });
     </script>
 </body>
