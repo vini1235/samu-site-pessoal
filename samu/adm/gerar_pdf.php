@@ -1,4 +1,7 @@
 <?PHP
+// Use only the configured database for this personal copy.
+require_once __DIR__ . '/../conexao/conexao.php';
+
 header('Content-Type: text/html; charset=utf-8');
 ?>
 
@@ -27,13 +30,8 @@ header('Content-Type: text/html; charset=utf-8');
 	//Descompactar o arquivo na pasta pdf
 	include ('../pdf/mpdf.php');
 	
-	$servidor = "localhost";
-	$usuario = "root";
-	$senha = "";
-	$dbname = "tisaude";
 	
 	//Criar a conexão
-	$conn = mysqli_connect($servidor, $usuario, $senha, $dbname);
 	mysqli_set_charset($conn,'utf8');
 	if(!$conn){
 		die("Falha na conexao: " . mysqli_connect_error());

@@ -1,4 +1,7 @@
 <?PHP
+// Use only the configured database for this personal copy.
+require_once __DIR__ . '/../../conexao/conexao.php';
+
 header('Content-Type: text/html; charset=utf-8');
 ?>
 <?php
@@ -7,7 +10,7 @@ include_once("../seguranca.php");
 
 ?>
 <?php
-$connect = mysqli_connect("localhost", "root", "", "basesamu");
+$connect = $conn;
 $query = "SELECT ocorrencia, count(*) as number FROM clinica GROUP BY ocorrencia
 UNION
 SELECT ocorrencia, count(*) as number FROM trauma GROUP BY ocorrencia

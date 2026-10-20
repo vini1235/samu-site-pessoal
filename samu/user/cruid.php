@@ -1,4 +1,7 @@
-<?PHP 
+<?PHP
+// Use only the configured database for this personal copy.
+require_once __DIR__ . '/../conexao/conexao.php';
+
 header('Content-Type: text/html; charset=utf-8');
 ?>
 <html>
@@ -30,7 +33,7 @@ header('Content-Type: text/html; charset=utf-8');
 <body>
 <?php
 
-$conexao = new mysqli('127.0.0.1', 'root', '', 'basesamu');
+$conexao = $conn;
 
 
 $acao = $_GET['acao'];

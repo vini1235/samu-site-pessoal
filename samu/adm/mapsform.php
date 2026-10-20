@@ -66,7 +66,7 @@ if(isset($_SESSION['nome_usu_sessao']))
 
         <h1> formulario de apontamento geografico de ocorrência</h1>
 
-        <iframe  src="http://localhost/maps1/teste.php" width="800" height="700" scrolling="no"></iframe>
+        <iframe  src="../maps1/form.php" title="Registrar localização da ocorrência" width="800" height="700" scrolling="no"></iframe>
 
 
 

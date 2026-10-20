@@ -28,12 +28,15 @@
 
 
 <?php
+// Use only the configured database for this personal copy.
+require_once __DIR__ . '/../conexao/conexao.php';
+
 
 
 //fetch.php
 if(isset($_POST["id"]))
 {
-    $connect = mysqli_connect("localhost", "root", "", "basesamu");
+    $connect = $conn;
     $output = '';
     $query = "SELECT * FROM psiquiatria WHERE id = '".$_POST["id"]."'";
     mysqli_set_charset($connect,'utf8');

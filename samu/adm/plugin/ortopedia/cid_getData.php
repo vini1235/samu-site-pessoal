@@ -1,10 +1,13 @@
-<?php 
+<?php
+// Use only the configured database for this personal copy.
+require_once __DIR__ . '/../../../conexao/conexao.php';
+
 // Database connection info 
-$dbDetails = array( 
-    'host' => 'localhost', 
-    'user' => 'root', 
-    'pass' => '', 
-    'db'   => 'rg' 
+$dbDetails = array(
+    'host' => $servidor,
+    'user' => $usuario,
+    'pass' => $senha,
+    'db' => $dbname
 ); 
  
 // DB table to use 

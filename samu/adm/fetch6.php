@@ -1,10 +1,13 @@
 <?php
+// Use only the configured database for this personal copy.
+require_once __DIR__ . '/../conexao/conexao.php';
+
 
 
 //fetch.php
 if(isset($_POST["id"]))
 {
-    $connect = mysqli_connect("localhost", "root", "", "tisaude");
+    $connect = $conn;
     $output = '';
     $query = "SELECT * FROM  tickets WHERE id = '".$_POST["id"]."'";
     $result = mysqli_query($connect, $query);

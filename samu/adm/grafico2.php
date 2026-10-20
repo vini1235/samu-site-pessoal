@@ -1,9 +1,12 @@
 <?PHP
+// Use only the configured database for this personal copy.
+require_once __DIR__ . '/../conexao/conexao.php';
+
 header('Content-Type: text/html; charset=utf-8');
 
 ?>
 <?php
-$connect = mysqli_connect("localhost", "root", "", "tisaude");
+$connect = $conn;
 $query = "SELECT setor, count(*) as number FROM entrada_toner GROUP BY setor";
 $result = mysqli_query($connect, $query);
 ?>

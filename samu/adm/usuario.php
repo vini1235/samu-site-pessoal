@@ -1,11 +1,14 @@
 <?PHP
+// Use only the configured database for this personal copy.
+require_once __DIR__ . '/../conexao/conexao.php';
+
 header('Content-Type: text/html; charset=utf-8');
 ?>
 
 <?php
 
-$conexao = mysqli_connect('localhost','root','');
-$banco = mysqli_select_db($conexao,'tisaude');
+$conexao = $conn;
+$banco = mysqli_select_db($conexao, $dbname);
 mysqli_set_charset($conexao,'utf8');
 $query ="SELECT * FROM usuarios ORDER BY ID DESC";
 $result = mysqli_query($conexao, $query);

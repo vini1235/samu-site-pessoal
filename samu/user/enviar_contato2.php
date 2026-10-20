@@ -1,5 +1,8 @@
 
 <?PHP
+// Use only the configured database for this personal copy.
+require_once __DIR__ . '/../conexao/conexao.php';
+
 header('Content-Type: text/html; charset=utf-8');
 
 ?>
@@ -7,15 +10,11 @@ header('Content-Type: text/html; charset=utf-8');
 <?php
 session_start();
 
-$host = "localhost";
-$user = "root";
-$pass = "";
-$db = "basesamu";
 
 
 
-$conexao = mysqli_connect('localhost','root','');
-$banco = mysqli_select_db($conexao,'basesamu');
+$conexao = $conn;
+$banco = mysqli_select_db($conexao, $dbname);
 mysqli_set_charset($conexao,'utf8');
 $sql = mysqli_query($conexao,"select * from obstetricia") or die("Erro");
 

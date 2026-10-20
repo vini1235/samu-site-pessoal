@@ -15,9 +15,22 @@ commits antigos não foram importados porque continham dados e credenciais.
 4. Prepare um banco de desenvolvimento com a estrutura necessária.
 5. Acesse `http://localhost/samu-site-pessoal/samu/`.
 
-A cópia local inicial mantém as configurações, uploads e backup existentes,
-mas esses arquivos não são enviados ao Git. O banco MySQL não foi duplicado:
-a conexão local continua apontando para o banco original, até ser reconfigurada.
+A cópia local mantém configurações, uploads e backup apenas no computador;
+esses arquivos não são enviados ao Git.
+
+## Banco pessoal isolado
+
+O banco local `basesamu_pessoal` foi criado em 20/10/2026 a partir de `basesamu`,
+com 14 tabelas e 24.665 registros. A estrutura e o conteúdo foram conferidos.
+O usuário MySQL `samu_pessoal` tem acesso apenas ao banco pessoal; consultas
+ao banco original são negadas pelo servidor.
+
+A senha gerada está somente em `samu/conexao/conexao.php`, ignorado pelo Git.
+Conexões mysqli, PDO, endpoints de tabelas e exportação usam essa configuração.
+Alterações na cópia pessoal não são sincronizadas com o banco original.
+
+Para uma nova instalação, crie um banco e um usuário exclusivos antes de
+preencher o arquivo de conexão. O código do repositório não inclui os dados.
 
 ## Conteúdo mantido apenas localmente
 

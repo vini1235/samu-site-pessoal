@@ -1,10 +1,13 @@
 <?php
+// Use only the configured database for this personal copy.
+require_once __DIR__ . '/../conexao/conexao.php';
+
 //action.php
 if(isset($_POST["action"]))
 {
     require_once __DIR__ . '/../conexao/conexao.php';
     $connect = $conn;
-    mysqli_select_db($connect, 'tisaude');
+    mysqli_select_db($connect, $dbname);
     if($_POST["action"] == "fetch")
     {
         $query = "SELECT * FROM equipamentos ORDER BY id DESC";

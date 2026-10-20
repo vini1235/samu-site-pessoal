@@ -1,11 +1,14 @@
 <?php
+// Use only the configured database for this personal copy.
+require_once __DIR__ . '/../../conexao/conexao.php';
+
 session_start();
 include_once("../seguranca.php");
 
 seguranca_adm();
 ?>
 <?php
-$connect = mysqli_connect("localhost", "root", "", "tisaude");
+$connect = $conn;
 $query = "SELECT toner, count(*) as number FROM saida_toner GROUP BY toner";
 $result = mysqli_query($connect, $query);
 ?>

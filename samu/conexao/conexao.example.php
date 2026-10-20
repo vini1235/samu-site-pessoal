@@ -1,10 +1,10 @@
 <?php
 	// Configuração central de conexão com MySQL.
 	$servidor = "localhost";
-	$usuario = "root";
+	$usuario = 'samu_pessoal';
 	$senha = '';
 	$port = 3306;
-	$dbname = "basesamu";
+	$dbname = 'basesamu_pessoal';
 
 	// Criar a conexão compartilhada.
 	$conn = mysqli_connect($servidor, $usuario, $senha, $dbname, $port);

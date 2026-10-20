@@ -1,7 +1,10 @@
 <?php
+// Use only the configured database for this personal copy.
+require_once __DIR__ . '/../conexao/conexao.php';
+
 header('Content-Type: text/html; charset=utf-8');
 
-$conexao = new mysqli('127.0.0.1', 'root', '', 'basesamu');
+$conexao = $conn;
 
 // Verifica se todos os dados necessários estão definidos e não são nulos
 if(isset($_GET['acao'], $_POST['txtdatahora'], $_POST['funcionario'], $_POST['plantao'], $_POST['ocorrencia'], $_POST['evento'], $_POST['qru'], $_POST['qra'], $_POST['qth'], $_POST['qti'], $_POST['message'], $_GET['id'])) {
