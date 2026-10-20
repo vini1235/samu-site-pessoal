@@ -163,53 +163,7 @@ if(isset($_SESSION['msg'])){
 
 
 <!-- Pushy Menu -->
-<nav class="pushy pushy-left" data-focus="#first-link">
-    <div class="pushy-content">
-        <ul>
-            <a href="../administrativo.php"><button type="submit" class="btn btn-primary">Home</button></a>
-
-            <li class="pushy-submenu">
-                <button id="first-link">Entrada de Equipamento</button>
-
-                <ul>
-                    <li class="pushy-link"><a href="../equipamento_entrada.php">Entrada de Equipamento</a></li>
-                    <li class="pushy-link"><a href="../equipamento_saida.php">Saida de Equipamento</a></li>
-
-                </ul>
-            </li>
-            <li class="pushy-submenu">
-                <button>Entrada de Toner</button>
-                <ul>
-                    <li class="pushy-link"><a href="../entrada_toner.php">Entrada de Torner</a></li>
-                    <li class="pushy-link"><a href="../saida_toner.php">Saida de Toner</a></li>
-
-                </ul>
-            </li>
-            <li class="pushy-submenu">
-                <button>Património</button>
-                <ul>
-                    <li class="pushy-link"><a href="../equipamento.php">Equipamento</a></li>
-
-                </ul>
-            </li>
-            <li class="pushy-submenu">
-                <button>Serviços</button>
-                <ul>
-
-                    <li class="pushy-link"><a href="../servico.php">Serviços</a></li>
-
-                </ul>
-            </li>
-            <li class="pushy-link"><a href="../tickets.php">Emissao-de-tickets </a></li>
-            <li class="pushy-link"><a href="../arquivos.php">Dowload</a></li>
-            <li class="pushy-link"><a href="../arquivo/index.php">Upload de Arquivos</a></li>
-            <li class="pushy-link"><a href="../usuario.php">Cadastrar</a></li>
-
-
-            <a href="../sair.php"><button type="submit" class="btn btn-success">Sair</button></a>
-        </ul>
-    </div>
-</nav>
+<?php require_once dirname(__DIR__, 2) . '/navigation.php'; samuAuxiliaryMenu('../'); ?>
 
 
 
@@ -373,7 +327,6 @@ if(isset($_SESSION['msg'])){
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <
         <script>window.jQuery || document.write('<script src="../../js/jquery.min.js"><\/script>')</script>
         <script src="../../js/pushy.min.js"></script>
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -474,7 +427,8 @@ if(isset($_SESSION['msg'])){
             $('#uploadModal').modal('show');
         });
 
-        $('#upload_form').on('submit', function(){
+        $('#upload_form').on('submit', function(event){
+            event.preventDefault();
             $.ajax({
                 url:"upload.php",
                 method:"POST",

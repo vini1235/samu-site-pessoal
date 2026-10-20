@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/../../conexao/file-operations.php';
+samuGuardFileAction(__DIR__, 2);
 
 function format_folder_size($size)
 {

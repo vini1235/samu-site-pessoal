@@ -42,53 +42,7 @@ if(isset($_SESSION['msg'])){
 
 <header class="site-header push">TI-SAÚDE</header>
 
-<nav class="pushy pushy-left" data-focus="#first-link">
-    <div class="pushy-content">
-        <ul>
-            <a href="administrativo.php"><button type="submit" class="btn btn-primary">Home</button></a>
-
-            <li class="pushy-submenu">
-                <button id="first-link">Entrada de Equipamento</button>
-
-                <ul>
-                    <li class="pushy-link"><a href="equipamento_entrada.php">Entrada de Equipamento</a></li>
-                    <li class="pushy-link"><a href="equipamento_saida.php">Saida de Equipamento</a></li>
-
-                </ul>
-            </li>
-            <li class="pushy-submenu">
-                <button>Entrada de Toner</button>
-                <ul>
-                    <li class="pushy-link"><a href="entrada_toner.php">Entrada de Torner</a></li>
-                    <li class="pushy-link"><a href="saida_toner.php">Saida de Toner</a></li>
-
-                </ul>
-            </li>
-            <li class="pushy-submenu">
-                <button>Património</button>
-                <ul>
-                    <li class="pushy-link"><a href="equipamento.php">Equipamento</a></li>
-
-                </ul>
-            </li>
-            <li class="pushy-submenu">
-                <button>Serviços</button>
-                <ul>
-
-                    <li class="pushy-link"><a href="servico.php">Serviços</a></li>
-
-                </ul>
-            </li>
-            <li class="pushy-link"><a href="tickets.php">Emissao-de-tickets </a></li>
-            <li class="pushy-link"><a href="arquivos.php">Dowload</a></li>
-            <li class="pushy-link"><a href="arquivo/index.php">Upload de Arquivos</a></li>
-            <li class="pushy-link"><a href="usuario.php">Cadastrar</a></li>
-
-
-            <a href="sair.php"><button type="submit" class="btn btn-success">Sair</button></a>
-        </ul>
-    </div>
-</nav>
+<?php require_once dirname(__DIR__) . '/navigation.php'; samuAuxiliaryMenu(); ?>
 
 
 
@@ -148,52 +102,52 @@ if(isset($_SESSION['msg'])){
                     <tbody>
                     <tr>
                         <td>brother8080DN WIN7 64X </td>
-                        <td><a class="btn btn-success"style="color:White;" href="../Download/DCP-8080DN-inst-win7-A2.rar">Download</a></td>
+                        <td><?php if (is_file(__DIR__ . '/../Download/DCP-8080DN-inst-win7-A2.rar')): ?><a class="btn btn-success"style="color:White;" href="../Download/DCP-8080DN-inst-win7-A2.rar">Download</a><?php else: ?><span class="text-muted">Arquivo indisponível nesta cópia</span><?php endif; ?></td>
 
                     </tr>
                     <tr>
                         <td>brother8080DN WIN10 64X</td>
-                        <td> <a class="btn btn-success"style="color:White;" href="../Download/DCP-8080DN-inst-win8-A1.rar">Download</a></td>
+                        <td> <?php if (is_file(__DIR__ . '/../Download/DCP-8080DN-inst-win8-A1.rar')): ?><a class="btn btn-success"style="color:White;" href="../Download/DCP-8080DN-inst-win8-A1.rar">Download</a><?php else: ?><span class="text-muted">Arquivo indisponível nesta cópia</span><?php endif; ?></td>
 
                     </tr>
                     <tr>
                         <td>brother8085DN WIN07 64X</td>
-                        <td>  <a class="btn btn-success"style="color:White;" href="../Download/DCP-8085DN-inst-win7-A2.rar">Download</a></td>
+                        <td>  <?php if (is_file(__DIR__ . '/../Download/DCP-8085DN-inst-win7-A2.rar')): ?><a class="btn btn-success"style="color:White;" href="../Download/DCP-8085DN-inst-win7-A2.rar">Download</a><?php else: ?><span class="text-muted">Arquivo indisponível nesta cópia</span><?php endif; ?></td>
 
                     </tr>
                     <tr>
                         <td>brother8085DN WIN10 64X</td>
-                        <td><a class="btn btn-success"style="color:White;" href="../Download/DCP-8085DN-inst-win8-A1.rar">Download</a></td>
+                        <td><?php if (is_file(__DIR__ . '/../Download/DCP-8085DN-inst-win8-A1.rar')): ?><a class="btn btn-success"style="color:White;" href="../Download/DCP-8085DN-inst-win8-A1.rar">Download</a><?php else: ?><span class="text-muted">Arquivo indisponível nesta cópia</span><?php endif; ?></td>
 
                     </tr>
                     <tr>
                         <td>hp_P2030_Full_Solution</td>
-                        <td> <a class="btn btn-success"style="color:White;" href="../Download/hp_P2030_Full_Solution.rar">Download</a></td>
+                        <td> <?php if (is_file(__DIR__ . '/../Download/hp_P2030_Full_Solution.rar')): ?><a class="btn btn-success"style="color:White;" href="../Download/hp_P2030_Full_Solution.rar">Download</a><?php else: ?><span class="text-muted">Arquivo indisponível nesta cópia</span><?php endif; ?></td>
 
                     </tr>
                     <tr>
                         <td> M2020_Series_WIN_UPD</td>
-                        <td> <a class="btn btn-success"style="color:White;" href="../Download/M2020_Series_WIN_UPD_V3.00.05.01.01.rar">Download</a></td>
+                        <td> <?php if (is_file(__DIR__ . '/../Download/M2020_Series_WIN_UPD_V3.00.05.01.01.rar')): ?><a class="btn btn-success"style="color:White;" href="../Download/M2020_Series_WIN_UPD_V3.00.05.01.01.rar">Download</a><?php else: ?><span class="text-muted">Arquivo indisponível nesta cópia</span><?php endif; ?></td>
 
                     </tr>
                     <tr>
                         <td>hp m3035</td>
-                        <td> <a class="btn btn-success"style="color:White;" href="../Download/hp m3035.rar">Download</a></td>
+                        <td> <?php if (is_file(__DIR__ . '/../Download/hp m3035.rar')): ?><a class="btn btn-success"style="color:White;" href="../Download/hp m3035.rar">Download</a><?php else: ?><span class="text-muted">Arquivo indisponível nesta cópia</span><?php endif; ?></td>
 
                     </tr>
                     <tr>
                         <td>HP LaserJet P2055dn win07 64x</td>
-                        <td><a class="btn btn-success"style="color:White;" href="../Download/upd-pcl5-x64-6.1.0.20062.rar">Download</a></td>
+                        <td><?php if (is_file(__DIR__ . '/../Download/upd-pcl5-x64-6.1.0.20062.rar')): ?><a class="btn btn-success"style="color:White;" href="../Download/upd-pcl5-x64-6.1.0.20062.rar">Download</a><?php else: ?><span class="text-muted">Arquivo indisponível nesta cópia</span><?php endif; ?></td>
 
                     </tr>
                     <tr>
                         <td>  HP LaserJet P2055dn win 10 64x</td>
-                        <td> <a class="btn btn-success"style="color:White;" href="../Download/upd-pcl6-x64-6.6.0.23029.rar">Download</a></td>
+                        <td> <?php if (is_file(__DIR__ . '/../Download/upd-pcl6-x64-6.6.0.23029.rar')): ?><a class="btn btn-success"style="color:White;" href="../Download/upd-pcl6-x64-6.6.0.23029.rar">Download</a><?php else: ?><span class="text-muted">Arquivo indisponível nesta cópia</span><?php endif; ?></td>
 
                     </tr>
                     <tr>
                         <td>  HP LaserJet P2055dn completa</td>
-                        <td> <a class="btn btn-success"style="color:White;" href="../Download/ P2055_default_install_v6.1_ww.rar">Download</a></td>
+                        <td> <?php if (is_file(__DIR__ . '/../Download/ P2055_default_install_v6.1_ww.rar')): ?><a class="btn btn-success"style="color:White;" href="../Download/ P2055_default_install_v6.1_ww.rar">Download</a><?php else: ?><span class="text-muted">Arquivo indisponível nesta cópia</span><?php endif; ?></td>
 
                     </tr>
 
@@ -235,77 +189,77 @@ if(isset($_SESSION['msg'])){
                     <tbody>
                     <tr>
                         <td>manual-GC420d-Windows2</td>
-                        <td><a class="btn btn-primary"style="color:White;" href="../Download/manual-GC420d-Windows2.rar">Download</a></td>
+                        <td><?php if (is_file(__DIR__ . '/../Download/manual-GC420d-Windows2.rar')): ?><a class="btn btn-primary"style="color:White;" href="../Download/manual-GC420d-Windows2.rar">Download</a><?php else: ?><span class="text-muted">Arquivo indisponível nesta cópia</span><?php endif; ?></td>
 
                     </tr>
                     <tr>
                         <td>manual ultrassom ft412</td>
-                        <td><a class="btn btn-primary"style="color:White;" href="../Download/FT412_b.rar">Download</a></td>
+                        <td><?php if (is_file(__DIR__ . '/../Download/FT412_b.rar')): ?><a class="btn btn-primary"style="color:White;" href="../Download/FT412_b.rar">Download</a><?php else: ?><span class="text-muted">Arquivo indisponível nesta cópia</span><?php endif; ?></td>
 
                     </tr>
                     <tr>
                         <td>Office_2007_PT-BR</td>
-                        <td> <a class="btn btn-primary"style="color:White;" href="../Download/Office_2007_PT-BR.zip">Download</a> </td>
+                        <td> <?php if (is_file(__DIR__ . '/../Download/Office_2007_PT-BR.zip')): ?><a class="btn btn-primary"style="color:White;" href="../Download/Office_2007_PT-BR.zip">Download</a><?php else: ?><span class="text-muted">Arquivo indisponível nesta cópia</span><?php endif; ?> </td>
 
                     </tr>
                     <tr>
                         <td> SMS_Power_View_Windows_(Requer_JRE)</td>
-                        <td> <a class="btn btn-primary"style="color:White;" href="../Download/SMS_Power_View_Windows_(Requer_JRE).rar">Download</a> </td>
+                        <td> <?php if (is_file(__DIR__ . '/../Download/SMS_Power_View_Windows_(Requer_JRE).rar')): ?><a class="btn btn-primary"style="color:White;" href="../Download/SMS_Power_View_Windows_(Requer_JRE).rar">Download</a><?php else: ?><span class="text-muted">Arquivo indisponível nesta cópia</span><?php endif; ?> </td>
 
                     </tr>
                     <tr>
                         <td>VNC 6.0.1</td>
-                        <td><a class="btn btn-primary"style="color:White;" href="../Download/VNC 6.0.1.rar">Download</a> </td>
+                        <td><?php if (is_file(__DIR__ . '/../Download/VNC 6.0.1.rar')): ?><a class="btn btn-primary"style="color:White;" href="../Download/VNC 6.0.1.rar">Download</a><?php else: ?><span class="text-muted">Arquivo indisponível nesta cópia</span><?php endif; ?> </td>
 
                     </tr>
                     <tr>
                         <td>Firebird-1.5.5.4926-3-Win32</td>
-                        <td>  <a class="btn btn-primary"style="color:White;" href="../Download/Firebird-1.5.5.4926-3-Win32.rar">Download</a> </td>
+                        <td>  <?php if (is_file(__DIR__ . '/../Download/Firebird-1.5.5.4926-3-Win32.rar')): ?><a class="btn btn-primary"style="color:White;" href="../Download/Firebird-1.5.5.4926-3-Win32.rar">Download</a><?php else: ?><span class="text-muted">Arquivo indisponível nesta cópia</span><?php endif; ?> </td>
 
                     </tr>
                     <tr>
                         <td> Conam</td>
-                        <td> <a class="btn btn-primary"style="color:White;" href="../Download/Conam.rar">Download</a> </td>
+                        <td> <?php if (is_file(__DIR__ . '/../Download/Conam.rar')): ?><a class="btn btn-primary"style="color:White;" href="../Download/Conam.rar">Download</a><?php else: ?><span class="text-muted">Arquivo indisponível nesta cópia</span><?php endif; ?> </td>
 
                     </tr>
                     <tr>
                         <td> comandos-de-rede-prompt-windows</td>
-                        <td> <a class="btn btn-primary"style="color:White;" href="../Download/comandos-de-rede-prompt-windows.rar">Download</a></td>
+                        <td> <?php if (is_file(__DIR__ . '/../Download/comandos-de-rede-prompt-windows.rar')): ?><a class="btn btn-primary"style="color:White;" href="../Download/comandos-de-rede-prompt-windows.rar">Download</a><?php else: ?><span class="text-muted">Arquivo indisponível nesta cópia</span><?php endif; ?></td>
 
                     </tr>
                     <tr>
                         <td> bluescreenview</td>
-                        <td> <a class="btn btn-primary"style="color:White;" href="../Download/bluescreenview.zip">Download</a></td>
+                        <td> <?php if (is_file(__DIR__ . '/../Download/bluescreenview.zip')): ?><a class="btn btn-primary"style="color:White;" href="../Download/bluescreenview.zip">Download</a><?php else: ?><span class="text-muted">Arquivo indisponível nesta cópia</span><?php endif; ?></td>
 
                     </tr>
                     <tr>
                         <td> accuchek</td>
-                        <td> <a class="btn btn-primary"style="color:White;" href="../Download/accuchek.rar">Download</a></td>
+                        <td> <?php if (is_file(__DIR__ . '/../Download/accuchek.rar')): ?><a class="btn btn-primary"style="color:White;" href="../Download/accuchek.rar">Download</a><?php else: ?><span class="text-muted">Arquivo indisponível nesta cópia</span><?php endif; ?></td>
 
                     </tr>
                     <tr>
                         <td>  ATIVADOR W10 By</td>
-                        <td> <a class="btn btn-primary"style="color:White;" href="../Download/AT W10 By PHDowns (1).rar">Download</td>
+                        <td> <?php if (is_file(__DIR__ . '/../Download/AT W10 By PHDowns (1).rar')): ?><a class="btn btn-primary"style="color:White;" href="../Download/AT W10 By PHDowns (1).rar">Download</td>
 
                     </tr>
                     <tr>
                         <td>ATIVADOR W7</td>
-                        <td><a class="btn btn-primary"style="color:White;" href="../Download/AtvdR W7 By PH Downs.rar">Download</a> </td>
+                        <td><a class="btn btn-primary"style="color:White;" href="../Download/AtvdR W7 By PH Downs.rar">Download</a><?php else: ?><span class="text-muted">Arquivo indisponível nesta cópia</span><?php endif; ?> </td>
 
                     </tr>
                     <tr>
                         <td>100-comandos-para-executar</td>
-                        <td><a class="btn btn-primary"style="color:White;" href="../Download/100-comandos-para-executar-no-seu-windows-10.rar">Download</a></td>
+                        <td><?php if (is_file(__DIR__ . '/../Download/100-comandos-para-executar-no-seu-windows-10.rar')): ?><a class="btn btn-primary"style="color:White;" href="../Download/100-comandos-para-executar-no-seu-windows-10.rar">Download</a><?php else: ?><span class="text-muted">Arquivo indisponível nesta cópia</span><?php endif; ?></td>
 
                     </tr>
                     <tr>
                         <td>CID 10</td>
-                        <td><a class="btn btn-primary"style="color:White;" href="../Download/InstPesq.rar">Download</a></td>
+                        <td><?php if (is_file(__DIR__ . '/../Download/InstPesq.rar')): ?><a class="btn btn-primary"style="color:White;" href="../Download/InstPesq.rar">Download</a><?php else: ?><span class="text-muted">Arquivo indisponível nesta cópia</span><?php endif; ?></td>
 
                     </tr>
                     <tr>
                         <td>SIPNI - Sistema</td>
-                        <td><a class="btn btn-primary"style="color:White;" href="../Download/SIPNI - Sistema.rar">Download</a></td>
+                        <td><?php if (is_file(__DIR__ . '/../Download/SIPNI - Sistema.rar')): ?><a class="btn btn-primary"style="color:White;" href="../Download/SIPNI - Sistema.rar">Download</a><?php else: ?><span class="text-muted">Arquivo indisponível nesta cópia</span><?php endif; ?></td>
 
                     </tr>
 

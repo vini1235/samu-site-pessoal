@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/../conexao/occurrences.php';
+samuOccurrenceRequireUser(1);
 header('Content-Type: application/json; charset=utf-8');
 
 require_once __DIR__ . '/../conexao/conexao.php';
@@ -24,7 +26,8 @@ $searchableColumns = array_slice($columns, 0, 11);
 $draw = isset($_POST['draw']) ? (int) $_POST['draw'] : 0;
 $start = isset($_POST['start']) ? (int) $_POST['start'] : 0;
 $length = isset($_POST['length']) ? (int) $_POST['length'] : 25;
-$length = $length > 0 ? $length : 25;
+$length = $length > 0 ? min($length, 1000) : 25;
+$start = max(0, $start);
 $searchValue = isset($_POST['search']['value']) ? trim($_POST['search']['value']) : '';
 $orderColumnIndex = isset($_POST['order'][0]['column']) ? (int) $_POST['order'][0]['column'] : 0;
 $orderDirection = (isset($_POST['order'][0]['dir']) && strtolower($_POST['order'][0]['dir']) === 'asc') ? 'ASC' : 'DESC';
