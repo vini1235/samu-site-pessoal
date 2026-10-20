@@ -1,0 +1,98 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  min-width: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  background: transparent;
+}
+
+.occurrence-chart {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(150px, 32%);
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  padding: 8px;
+}
+
+#piechart {
+  width: 100%;
+  min-width: 0;
+  height: clamp(220px, 48vw, 420px);
+}
+
+.chart-legend {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.chart-legend li {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
+}
+
+.chart-legend-label {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.chart-legend-swatch {
+  flex: 0 0 12px;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.chart-legend[hidden] {
+  display: none;
+}
+
+.occurrence-chart-empty {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.chart-empty {
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  text-align: center;
+  color: #666;
+}
+
+@media (max-width: 600px) {
+  .occurrence-chart {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+    padding: 4px;
+  }
+
+  #piechart {
+    height: clamp(220px, 75vw, 320px);
+  }
+
+  .chart-legend {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 16px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 360px) {
+  .chart-legend {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

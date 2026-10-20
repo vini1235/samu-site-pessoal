@@ -1,0 +1,26 @@
+# Local credentials and environment settings
+.env
+.env.*
+!.env.example
+/samu/conexao/conexao.php
+/samu/maps.local.php
+
+# Database backups and local user data
+*.sql
+*.sqlite
+*.sqlite3
+/samu/upload/*
+!/samu/upload/.gitkeep
+/samu/adm/arquivo/*
+!/samu/adm/arquivo/*.php
+/samu/user/arquivo/*
+!/samu/user/arquivo/*.php
+
+# Editor, dependency caches and temporary files
+.idea/
+.vscode/
+node_modules/
+*.log
+*.tmp
+.DS_Store
+Thumbs.db

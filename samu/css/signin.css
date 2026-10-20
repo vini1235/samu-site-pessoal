@@ -1,0 +1,266 @@
+:root {
+  --samu-red: #c62828;
+  --samu-red-dark: #8e0000;
+  --samu-red-light: #bd2b1e;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f5f5f5;
+  min-height: 100vh;
+}
+
+.main-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 15px;
+  gap: 30px;
+}
+
+/* Logo e Título Principal */
+.logo-title-main {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.logo-title-main img {
+  width: 130px;
+  max-width: 100%;
+  height: 100px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.logo-title-main h1 {
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+  font-weight: 700;
+  color: var(--samu-red);
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 20px;
+  max-width: 100%;
+}
+
+.logo-title-main .subtitle {
+  font-size: 16px;
+  color: #555;
+  margin-top: 8px;
+}
+
+/* Card de Login */
+.login-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  max-width: 450px;
+  width: 100%;
+}
+
+
+.login-header {
+  background: linear-gradient(
+    135deg,
+    var(--samu-red) 0%,
+    var(--samu-red-dark) 100%
+  );
+  padding: 30px;
+  text-align: center;
+  color: white;
+}
+
+.login-header h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.login-body {
+  padding: 40px 35px;
+}
+
+/* Formulário */
+.form-label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.form-control {
+  border: 2px solid #e0e0e0;
+  padding: 12px 15px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  background: #f8f9fa;
+}
+
+.form-control:focus {
+  background: white;
+  border-color: var(--samu-red);
+  box-shadow: 0 0 0 0.25rem rgba(198, 40, 40, 0.15);
+}
+
+/* Botão */
+.btn-login {
+  background: linear-gradient(
+    135deg,
+    var(--samu-red) 0%,
+    var(--samu-red-dark) 100%
+  );
+  border: none;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.btn-login:hover {
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(198, 40, 40, 0.4);
+  background: linear-gradient(
+    135deg,
+    var(--samu-red-light) 0%,
+    var(--samu-red) 100%
+  );
+}
+
+.btn-login:focus-visible {
+  color: white;
+  outline: 3px solid var(--samu-red);
+  outline-offset: 4px;
+}
+
+.btn-login:active {
+  transform: translateY(0);
+}
+/* Footer */
+footer {
+  background: linear-gradient(135deg, var(--samu-red-dark) 0%, #5d0000 100%);
+  color: white;
+  padding: 50px 0 30px;
+  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.footer-section h5 {
+  font-weight: 700;
+  margin-bottom: 20px;
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.footer-section p {
+  font-size: 14px;
+  line-height: 1.8;
+  opacity: 0.9;
+  margin-bottom: 8px;
+}
+
+.footer-section a {
+  color: white;
+  text-decoration: none;
+  opacity: 0.9;
+  transition: all 0.3s;
+}
+
+.footer-section a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: 25px;
+  margin-top: 40px;
+  text-align: center;
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+/* Responsivo */
+@media (max-width: 576px) {
+  .content-wrapper {
+    padding: 28px 16px;
+    gap: 24px;
+  }
+
+  .logo-title-main h1 {
+    font-size: 28px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 24px;
+    width: min(100%, 320px);
+    justify-items: center;
+  }
+
+  .logo-title-main img {
+    width: 110px;
+    height: 80px;
+  }
+
+  .brand-city {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .brand-samu {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .site-title {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .logo-title-main .subtitle {
+    max-width: 30ch;
+    font-size: 14px;
+  }
+
+  .login-body {
+    padding: 30px 25px;
+  }
+
+  .footer-section {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .form-control,
+  .btn-login,
+  .footer-section a {
+    transition: none;
+  }
+
+  .btn-login:hover {
+    transform: none;
+  }
+}
