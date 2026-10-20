@@ -1,45 +1,35 @@
-<?PHP
-// Use only the configured database for this personal copy.
-require_once __DIR__ . '/../conexao/conexao.php';
-
-header('Content-Type: text/html; charset=utf-8');
-?>
-
 <?php
-
-$conexao = $conn;
-
-
-
-$acao = $_GET['acao'];
-$nome_usu= $_POST ['nome_usu'];
-$email_usu= $_POST['email_usu'];
-$senha_usu= $_POST['senha_usu'];
-$adm= $_POST['adm'];
-
-if(isset($_GET ["id"])){
-    $id = $_GET["id"];
+require_once __DIR__ . '/../usuarios_helpers.php';
+samu_users_require_role(1);
+if ($_SERVER['REQUEST_METHOD'] !== 'POST' || ($_GET['acao'] ?? '') !== 'atualizar') {
+    samu_users_error(405, 'Use o formulário de edição.');
 }
-switch ($acao){
-    case "atualizar":{
-        $sql="UPDATE usuario SET nome_usu='$nome_usu',email_usu='$email_usu',senha_usu='$senha_usu',adm ='$adm' WHERE id =".$id;
-        mysqli_set_charset($conexao,'utf8');
-        $resultado  = $conexao->query($sql);
-        if ($resultado == false){
-            die(mysqli_error());
-
-        }
-
-        else {
-
-            header("location: cadastrar.php");
-
-
-
-        }
-        break;
-
+require_once __DIR__ . '/../conexao/conexao.php';
+$id = filter_var($_GET['id'] ?? null, FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
+if (!$id) {
+    samu_users_error(422, 'Usuário inválido.');
+}
+[$name, $email, $password, $role] = samu_users_input(false);
+try {
+    $existing = $conn->prepare('SELECT id FROM usuarios WHERE id = ?');
+    $existing->bind_param('i', $id);
+    $existing->execute();
+    if (!$existing->get_result()->fetch_assoc()) {
+        samu_users_error(404, 'Usuário não encontrado.');
     }
-
+    if (samu_users_email_exists($conn, $email, $id)) {
+        samu_users_error(409, 'Já existe um usuário com esse e-mail.');
+    }
+    if ($password === '') {
+        $statement = $conn->prepare('UPDATE usuarios SET nome = ?, email = ?, niveis_acesso_id = ? WHERE id = ?');
+        $statement->bind_param('ssii', $name, $email, $role, $id);
+    } else {
+        $statement = $conn->prepare('UPDATE usuarios SET nome = ?, email = ?, senha = ?, niveis_acesso_id = ? WHERE id = ?');
+        $statement->bind_param('sssii', $name, $email, $password, $role, $id);
+    }
+    $statement->execute();
+} catch (mysqli_sql_exception $error) {
+    samu_users_error(500, 'Não foi possível atualizar o usuário.');
 }
-?>
+header('Location: usuario.php', true, 303);
+exit;

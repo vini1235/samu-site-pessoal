@@ -1,36 +1,20 @@
-<?PHP
-// Use only the configured database for this personal copy.
+<?php
+require_once __DIR__ . '/../usuarios_helpers.php';
+samu_users_require_role(1);
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    samu_users_error(405, 'Use o formulário de cadastro.');
+}
 require_once __DIR__ . '/../conexao/conexao.php';
-
-header('Content-Type: text/html; charset=utf-8');
-
-?>
-
-<?php
-
-
-
-$conexao = $conn;
-$banco = mysqli_select_db($conexao, $dbname);
-mysqli_set_charset($conexao,'utf8');
-$sql = mysqli_query($conexao,"select * from usuarios") or die("Erro");
-
-?>
-<?php
-
-$nome= $_POST['nome'];
-$email= $_POST['email'];
-$senha= $_POST['senha'];
-$niveis_acesso_id= $_POST['niveis_acesso_id'];
-
-
-$sql = mysqli_query ($conexao,"INSERT INTO usuarios(nome,  email, senha, niveis_acesso_id )VALUES('$nome','$email', '$senha', '$niveis_acesso_id' )");
-
-header("location: usuario.php");
-
-
-?>
-
-
-
-
+[$name, $email, $password, $role] = samu_users_input(true);
+try {
+    if (samu_users_email_exists($conn, $email)) {
+        samu_users_error(409, 'Já existe um usuário com esse e-mail.');
+    }
+    $statement = $conn->prepare('INSERT INTO usuarios (nome, email, senha, niveis_acesso_id) VALUES (?, ?, ?, ?)');
+    $statement->bind_param('sssi', $name, $email, $password, $role);
+    $statement->execute();
+} catch (mysqli_sql_exception $error) {
+    samu_users_error(500, 'Não foi possível cadastrar o usuário.');
+}
+header('Location: usuario.php', true, 303);
+exit;

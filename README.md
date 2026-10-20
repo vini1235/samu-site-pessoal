@@ -42,3 +42,20 @@ preencher o arquivo de conexão. O código do repositório não inclui os dados.
 As bibliotecas embarcadas foram preservadas para manter as dependências do
 projeto legado. O arquivo de exemplo `samu/maps-teste/map.js` contém um
 placeholder no lugar de uma chave real.
+
+## Validação dos fluxos pessoais
+
+Em 20/10/2026, passaram 64 verificações funcionais e 11 verificações de sessão
+final. Foram cobertos login válido/inválido, cadastro e edição de usuários,
+cadastro/edição/reabertura/listagem nas seis especialidades e nos dois perfis,
+acentos e aspas, validação de entradas, logout e acesso sem sessão.
+
+Um cadastro e uma edição também foram realizados pelo navegador e conferidos
+no banco pessoal. Os 16 registros temporários foram removidos ao final.
+A comparação integral dos registros confirmou o banco original intacto e
+os dados preexistentes da cópia pessoal preservados. A sequência automática
+de IDs pode conter os intervalos consumidos pelos testes.
+
+As correções incluem o direcionamento correto da edição de usuários,
+consultas preparadas nos formulários, preservação de textos com aspas e
+interrupção das páginas protegidas quando a sessão não permite acesso.

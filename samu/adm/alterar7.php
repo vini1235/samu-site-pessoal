@@ -1,153 +1,51 @@
 <?php
-header('Content-Type: text/html; charset=utf-8');
-
+require_once __DIR__ . '/../usuarios_helpers.php';
+samu_users_require_role(1);
 require_once __DIR__ . '/../conexao/conexao.php';
-$msqli = $conn;
-
-if(isset($_REQUEST['id'])){
-    $id=intval($_REQUEST['id']);
-    $sql = "SELECT * FROM usuario where id =".$id;
-    mysqli_set_charset($msqli,'utf8');
-    $resultado  = $msqli->query($sql);
-    if ($resultado == false){
-        die ("Erro de seleção de dados");
-
-    }
-    else {
-
-        $linha = mysqli_fetch_array($resultado);
-
-    }
-    ?>
-    <html>
-    <head>
-        <meta charset="utf-8"/>
-
-        <title>T.I Saude</title>
-
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-        <link rel="stylesheet" type="text/css" href="estilo.css">
-
-
-
-        <script type="text/javascript">
-            $(document).ready(function(){
-                $(".btn.btn-xs.btn-danger").click( function(event) {
-                    var apagar = confirm('Deseja realmente excluir este registro?');
-                    if (apagar){
-                        // aqui vai a instrução para apagar registro
-                    }else{
-                        event.preventDefault();
-                    }
-                });
-            });
-        </script>
-
-        <script type="text/javascript" src="lletras.js"></script>
-
-
-        <script>
-            function somenteNumeros(num) {
-                var er = /[^0-9.]/;
-                er.lastIndex = 0;
-                var campo = num;
-                if (er.test(campo.value)) {
-                    campo.value = "";
-                }
-            }
-        </script>
-
-
-
-
-    </head>
-    <body>
-
-    <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Alterar Cadastro</h4>
-        </div>
+$id = filter_var($_POST['id'] ?? $_GET['id'] ?? null, FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
+if (!$id) {
+    samu_users_error(422, 'Usuário inválido.');
+}
+$statement = $conn->prepare('SELECT id, nome, email, niveis_acesso_id FROM usuarios WHERE id = ?');
+$statement->bind_param('i', $id);
+$statement->execute();
+$account = $statement->get_result()->fetch_assoc();
+if (!$account) {
+    samu_users_error(404, 'Usuário não encontrado.');
+}
+header('Content-Type: text/html; charset=utf-8');
+?>
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">&times;</button>
+        <h4 class="modal-title">Editar usuário</h4>
+    </div>
+    <form method="POST" action="cruid7.php?id=<?php echo (int) $account['id']; ?>&amp;acao=atualizar">
         <div class="modal-body">
-
-            <form method="POST" id="form" action="cruid7.php?id=<?php echo $id; ?>&acao=atualizar">
-
-                <ul>
-
-
-
-
-
-                    <li>
-                        <label for="nome_usu">NOME</label>
-
-                        <input type="text" name="nome_usu" id="nome_usu" value="<?php echo $linha ["nome_usu"]; ?>" placeholder="Digite o Nome"  ><span class="required"></span>
-
-
-                    </li>
-                    <li>
-                    <label for="email_usu">Email</label>
-
-                    <input type="email" name="email_usu" id="email_usu"  value="<?php echo $linha ["email_usu"]; ?>"placeholder="Digite o Email"  ><span class="required"></span>
-                    </li>
-
-                    <li>
-
-                        <label for="senha_usu">SENHA</label>
-                        <input type="text" name="senha_usu" id="senha_usu"  value="<?php echo $linha ["senha_usu"]; ?>" placeholder="Digite a Senha" required="required"><span class="required"></span>
-
-                    </li>
-                   <li>
-                    <label for="adm">ADM</label>
-                    <select name="adm" id="adm">
-
-                        <option <?php if ($linha['adm']=='1') echo 'selected' ; ?> value="1">ADM</option>
-                        <option <?php if ($linha['adm']=='') echo 'selected' ; ?> value="">USUARIO</option>
-
-
-                    </select>
-
-
-                   </li>
-                    <li>
-
-                        <input type="submit" id="send_message" value="Enviar"   />
-
-
-                    </li>
-
-
-
-                </ul>
-
-
-
-            </form>
-
-
-
-            </form>
-
-
-
-
-
+            <div class="form-group">
+                <label for="edit-user-name">Nome</label>
+                <input class="form-control" type="text" name="nome" id="edit-user-name" maxlength="220" required value="<?php echo samu_users_escape($account['nome']); ?>">
+            </div>
+            <div class="form-group">
+                <label for="edit-user-email">E-mail</label>
+                <input class="form-control" type="email" name="email" id="edit-user-email" maxlength="220" required value="<?php echo samu_users_escape($account['email']); ?>">
+            </div>
+            <div class="form-group">
+                <label for="edit-user-password">Nova senha</label>
+                <input class="form-control" type="password" name="senha" id="edit-user-password" maxlength="220" autocomplete="new-password" aria-describedby="edit-user-password-help">
+                <p class="help-block" id="edit-user-password-help">Deixe em branco para manter a senha atual.</p>
+            </div>
+            <div class="form-group">
+                <label for="edit-user-role">Nível de acesso</label>
+                <select class="form-control" name="niveis_acesso_id" id="edit-user-role" required>
+                    <option value="1"<?php echo (string) $account['niveis_acesso_id'] === '1' ? ' selected' : ''; ?>>ADM</option>
+                    <option value="2"<?php echo (string) $account['niveis_acesso_id'] === '2' ? ' selected' : ''; ?>>USUÁRIO</option>
+                </select>
+            </div>
         </div>
         <div class="modal-footer">
-
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Salvar alterações</button>
         </div>
-    </div>
-
-
-
-
-    </body>
-    </html>
-    <?php
-}//end if
-?>
-
+    </form>
+</div>

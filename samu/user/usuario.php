@@ -1,24 +1,9 @@
-<?PHP
-// Use only the configured database for this personal copy.
+<?php
+require_once __DIR__ . '/../usuarios_helpers.php';
+samu_users_require_role(2);
 require_once __DIR__ . '/../conexao/conexao.php';
-
 header('Content-Type: text/html; charset=utf-8');
-?>
-
-<?php
-
-$conexao = $conn;
-$banco = mysqli_select_db($conexao, $dbname);
-mysqli_set_charset($conexao,'utf8');
-$query ="SELECT * FROM usuarios ORDER BY ID DESC";
-$result = mysqli_query($conexao, $query);
-
-?>
-<?php
-session_start();
-include_once("seguranca.php");
-
-seguranca_user();
+$result = $conn->query('SELECT id, nome, email, niveis_acesso_id FROM usuarios ORDER BY id DESC');
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -94,29 +79,9 @@ seguranca_user();
 
 
 
-    <script>
-
-        $(document).ready(function() {
-            $('#').DataTable( {
-                "scrollY": 200,
-                "scrollX": true
-            } );
-        } );
-
-    </script>
-
-    <script>
-
-        $(document).ready(function() {
-            $('#').DataTable( {
-                scrollY:        '50vh',
-                "scrollCollapse": true,
-                "paging":         true
-            } );
-        } );
 
 
-    </script>
+
 
 
     <script>
@@ -130,49 +95,7 @@ seguranca_user();
         }
     </script>
 
-    <script>
 
-
-
-        $(document).ready(function() {
-            $('#employee_data').DataTable( {
-                "footerCallback": function ( row, data, start, end, display ) {
-                    var api = this.api(), data;
-
-                    // Remove the formatting to get integer data for summation
-                    var intVal = function ( i ) {
-                        return typeof i === 'string' ?
-                            i.replace(/[\$,]/g, '')*1 :
-                            typeof i === 'number' ?
-                                i : 0;
-                    };
-
-                    // Total over all pages
-                    total = api
-                        .column( 10 )
-                        .data()
-                        .reduce( function (a, b) {
-                            return intVal(a) + intVal(b);
-                        }, 0 );
-
-                    // Total over this page
-                    pageTotal = api
-                        .column( 10, { page: 'current'} )
-                        .data()
-                        .reduce( function (a, b) {
-                            return intVal(a) + intVal(b);
-                        }, 0 );
-
-                    // Update footer
-                    $( api.column( 10 ).footer() ).html(
-                        '$'+pageTotal +' ( $'+ total +' total)'
-                    );
-                }
-            } );
-        } );
-
-
-    </script>
 
     <script type="text/javascript">
         /* Máscaras ER */
@@ -335,8 +258,8 @@ if(isset($_SESSION['msg'])){
                                             <input type="password" name="senha" id="senha" placeholder="Digite a senha">
                                         </li>
                                         <li>
-                                            <label for=" niveis_acesso_id">ADM</label>
-                                            <select name=" niveis_acesso_id" id=" niveis_acesso_id">
+                                            <label for="niveis_acesso_id">ADM</label>
+                                            <select name="niveis_acesso_id" id="niveis_acesso_id">
 
                                                 <option value="1">ADM</option>
                                                 <option value="2">USUARIO</option>
@@ -376,18 +299,12 @@ if(isset($_SESSION['msg'])){
                         <td>ID</td>
                         <td>NOME</td>
                         <td>EMAIL</td>
-                        <td>SENHA</td>
                         <td>NIVEL ACESSO</td>
                         <td>EDITAR</td>
                         <td>EXCLUIR</td>
                     </tr>
                     </thead>
-                    <tfoot>
-                    <tr>
-                        <th colspan="10" style="text-align:right">Total:</th>
-                        <th></th>
-                    </tr>
-                    </tfoot>
+
 
                     <?php
                     while($row = mysqli_fetch_array($result))
@@ -401,9 +318,8 @@ if(isset($_SESSION['msg'])){
                                <tr xmlns="http://www.w3.org/1999/html">
 
                                     <td>' .$row["id"].'</td>							
-                                    <td>'.$row["nome"].'</td>
-                                    <td>'.$row["email"].'</td>
-                                    <td>'.$row["senha"].'</td>
+                                    <td>'.samu_users_escape($row["nome"]).'</td>
+                                    <td>'.samu_users_escape($row["email"]).'</td>
                                     <td>'.$row["niveis_acesso_id"].'</td>
                                  
                         
@@ -443,14 +359,14 @@ if(isset($_SESSION['msg'])){
             //alert(per_id);
             $('#content-data').html('');
             $.ajax({
-                url:'alterar2.php',
+                url:'alterar7.php',
                 type:'POST',
                 data:'id='+id,
                 dataType:'html'
             }).done(function(data){
                 $('#content-data').html('');
                 $('#content-data').html(data);
-            }).fial(function(){
+            }).fail(function(){
                 $('#content-data').html('<p>Error</p>');
             });
         });
@@ -508,10 +424,10 @@ if(isset($_SESSION['msg'])){
 
 
 
+<script>
+$(function () {
+    $('#employee_data').DataTable();
+});
+</script>
 </body>
 </html>
-<script>
-    $(document).ready(function(){
-        $('#employee_data').DataTable();
-    });
-</script>
