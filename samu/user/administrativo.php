@@ -24,46 +24,7 @@ seguranca_user();
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-xl navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="administrativo.php">
-            
-                <img src="../imagens/samu-192_logo.png" alt="SAMU Logo">
-                
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir menu">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="administrativo.php">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="clinica.php">Clínica Médica</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="trauma.php">Trauma</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="obstetricia.php">Obstetrícia</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pediatria.php">Pediatria</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="ortopedia.php">Ortopedia</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="psiquiatria.php">Psiquiatria</a>
-                    </li>
-                    <li class="nav-item ms-3">
-                        <a href="sair.php" class="btn btn-logout">Sair</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <?php require_once dirname(__DIR__) . '/layout.php'; samuNavbar('', 'administrativo.php'); ?>
 
     <!-- Hero -->
     <div class="hero-section">
@@ -249,76 +210,6 @@ seguranca_user();
         </div>
     </div>
 
-    <!-- Modal Importar -->
-    <div class="modal fade" id="modalImportar" tabindex="-1" aria-labelledby="modalImportarLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalImportarLabel">Importar Backup</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" action="../importar/processa.php" enctype="multipart/form-data">
-                        <div class="mb-3">
-                            <label class="form-label" for="importar-servidor">Servidor</label>
-                            <input id="importar-servidor" type="text" class="form-control" name="servidor" placeholder="Nome do servidor" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="importar-usuario">Usuário</label>
-                            <input id="importar-usuario" type="text" class="form-control" name="usuario" placeholder="Usuário da base de dados" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="importar-senha">Senha</label>
-                            <input id="importar-senha" type="password" class="form-control" name="senha" placeholder="Senha da base de dados" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="importar-dbname">Base de Dados</label>
-                            <input id="importar-dbname" type="text" class="form-control" name="dbname" placeholder="Nome da base de dados" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="importar-arquivo">Arquivo de Backup</label>
-                            <input id="importar-arquivo" type="file" class="form-control" name="arquivo" required>
-                        </div>
-                        <button type="submit" class="btn btn-card w-100">Importar</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Exportar -->
-    <div class="modal fade" id="modalExportar" tabindex="-1" aria-labelledby="modalExportarLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalExportarLabel">Exportar Backup</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" action="../exportar/processa.php" enctype="multipart/form-data">
-                        <div class="mb-3">
-                            <label class="form-label" for="exportar-servidor">Servidor</label>
-                            <input id="exportar-servidor" type="text" class="form-control" name="servidor" placeholder="Nome do servidor" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="exportar-usuario">Usuário</label>
-                            <input id="exportar-usuario" type="text" class="form-control" name="usuario" placeholder="Nome do usuário" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="exportar-senha">Senha</label>
-                            <input id="exportar-senha" type="password" class="form-control" name="senha" placeholder="Senha da base de dados" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="exportar-dbname">Base de Dados</label>
-                            <input id="exportar-dbname" type="text" class="form-control" name="dbname" placeholder="Nome da base de dados" required>
-                        </div>
-                        <button type="submit" class="btn btn-card w-100">Exportar</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -332,26 +223,26 @@ seguranca_user();
 
                 <div class="col-md-3 footer-section">
                     <h5>Governo</h5>
-                    <p><a href="#">Nossos Prefeitos</a></p>
-                    <p><a href="#">Nossos Secretários</a></p>
+                    <p><a href="https://portal.jandira.sp.gov.br/Prefeitos">Nossos Prefeitos</a></p>
+                    <p><a href="https://portal.jandira.sp.gov.br/Secretarios">Nossos Secretários</a></p>
                 </div>
 
                 <div class="col-md-3 footer-section">
                     <h5>Serviços</h5>
-                    <p><a href="#">Cidadão</a></p>
-                    <p><a href="#">Empresas</a></p>
-                    <p><a href="#">Servidores</a></p>
+                    <p><a href="https://portal.jandira.sp.gov.br/Cidadao">Cidadão</a></p>
+                    <p><a href="https://portal.jandira.sp.gov.br/Empresas">Empresas</a></p>
+                    <p><a href="https://portal.jandira.sp.gov.br/Servidor">Servidores</a></p>
                 </div>
 
                 <div class="col-md-3 footer-section">
                     <h5>Consultas</h5>
-                    <p><a href="#">Portal da Transparência</a></p>
-                    <p><a href="#">Concurso Público</a></p>
-                    <p><a href="#">Decretos Municipais</a></p>
-                    <p><a href="#">Leis Municipais</a></p>
-                    <p><a href="#">Conheça Jandira</a></p>
-                    <p><a href="#">Telefones Úteis</a></p>
-                    <p><a href="#">Perguntas Frequentes</a></p>
+                    <p><a href="https://leideacesso.etransparencia.com.br/jandira.prefeitura.sp/TDAPortalClient.aspx?417">Portal da Transparência</a></p>
+                    <p><a href="https://portal.jandira.sp.gov.br/Concursos">Concurso Público</a></p>
+                    <p><a href="https://portal.jandira.sp.gov.br/Decretos">Decretos Municipais</a></p>
+                    <p><a href="https://leismunicipais.com.br/legislacao-municipal/5019/leis-de-jandira/">Leis Municipais</a></p>
+                    <p><a href="https://portal.jandira.sp.gov.br/historia">Conheça Jandira</a></p>
+                    <p><a href="https://portal.jandira.sp.gov.br/Telefones">Telefones Úteis</a></p>
+                    <p><a href="https://portal.jandira.sp.gov.br/perguntas-frequentes">Perguntas Frequentes</a></p>
                 </div>
             </div>
 

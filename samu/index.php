@@ -102,26 +102,26 @@ session_start();
 
           <div class="col-md-3 footer-section">
             <h5>Governo</h5>
-            <p><a href="#">Nossos Prefeitos</a></p>
-            <p><a href="#">Nossos Secretários</a></p>
+            <p><a href="https://portal.jandira.sp.gov.br/Prefeitos">Nossos Prefeitos</a></p>
+            <p><a href="https://portal.jandira.sp.gov.br/Secretarios">Nossos Secretários</a></p>
           </div>
 
           <div class="col-md-3 footer-section">
             <h5>Serviços</h5>
-            <p><a href="#">Cidadão</a></p>
-            <p><a href="#">Empresas</a></p>
-            <p><a href="#">Servidores</a></p>
+            <p><a href="https://portal.jandira.sp.gov.br/Cidadao">Cidadão</a></p>
+            <p><a href="https://portal.jandira.sp.gov.br/Empresas">Empresas</a></p>
+            <p><a href="https://portal.jandira.sp.gov.br/Servidor">Servidores</a></p>
           </div>
 
           <div class="col-md-3 footer-section">
             <h5>Consultas</h5>
-            <p><a href="#">Portal da Transparência</a></p>
-            <p><a href="#">Concurso Público</a></p>
-            <p><a href="#">Decretos Municipais</a></p>
-            <p><a href="#">Leis Municipais</a></p>
-            <p><a href="#">Conheça Jandira</a></p>
-            <p><a href="#">Telefones Úteis</a></p>
-            <p><a href="#">Perguntas Frequentes</a></p>
+            <p><a href="https://leideacesso.etransparencia.com.br/jandira.prefeitura.sp/TDAPortalClient.aspx?417">Portal da Transparência</a></p>
+            <p><a href="https://portal.jandira.sp.gov.br/Concursos">Concurso Público</a></p>
+            <p><a href="https://portal.jandira.sp.gov.br/Decretos">Decretos Municipais</a></p>
+            <p><a href="https://leismunicipais.com.br/legislacao-municipal/5019/leis-de-jandira/">Leis Municipais</a></p>
+            <p><a href="https://portal.jandira.sp.gov.br/historia">Conheça Jandira</a></p>
+            <p><a href="https://portal.jandira.sp.gov.br/Telefones">Telefones Úteis</a></p>
+            <p><a href="https://portal.jandira.sp.gov.br/perguntas-frequentes">Perguntas Frequentes</a></p>
           </div>
         </div>
 

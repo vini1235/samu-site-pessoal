@@ -164,44 +164,7 @@ seguranca_user();
 
 <body>
     <!-- Navbar (mesmo padrão do administrativo.php) -->
-    <nav class="navbar navbar-expand-xl navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="administrativo.php">
-                <img src="../imagens/samu-192_logo.png" alt="SAMU Logo">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir menu">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="administrativo.php">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="clinica.php">Clínica Médica</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="trauma.php">Trauma</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="obstetricia.php">Obstetrícia</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pediatria.php">Pediatria</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="ortopedia.php">Ortopedia</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="psiquiatria.php">Psiquiatria</a>
-                    </li>
-                    <li class="nav-item ms-3">
-                        <a href="sair.php" class="btn btn-logout">Sair</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <?php require_once dirname(__DIR__) . '/layout.php'; samuNavbar('', 'obstetricia.php'); ?>
 
     <!-- Header da Página -->
     <div class="page-header">
@@ -405,26 +368,26 @@ seguranca_user();
 
                 <div class="col-md-3 footer-section">
                     <h5>Governo</h5>
-                    <p><a href="#">Nossos Prefeitos</a></p>
-                    <p><a href="#">Nossos Secretários</a></p>
+                    <p><a href="https://portal.jandira.sp.gov.br/Prefeitos">Nossos Prefeitos</a></p>
+                    <p><a href="https://portal.jandira.sp.gov.br/Secretarios">Nossos Secretários</a></p>
                 </div>
 
                 <div class="col-md-3 footer-section">
                     <h5>Serviços</h5>
-                    <p><a href="#">Cidadão</a></p>
-                    <p><a href="#">Empresas</a></p>
-                    <p><a href="#">Servidores</a></p>
+                    <p><a href="https://portal.jandira.sp.gov.br/Cidadao">Cidadão</a></p>
+                    <p><a href="https://portal.jandira.sp.gov.br/Empresas">Empresas</a></p>
+                    <p><a href="https://portal.jandira.sp.gov.br/Servidor">Servidores</a></p>
                 </div>
 
                 <div class="col-md-3 footer-section">
                     <h5>Consultas</h5>
-                    <p><a href="#">Portal da Transparência</a></p>
-                    <p><a href="#">Concurso Público</a></p>
-                    <p><a href="#">Decretos Municipais</a></p>
-                    <p><a href="#">Leis Municipais</a></p>
-                    <p><a href="#">Conheça Jandira</a></p>
-                    <p><a href="#">Telefones Úteis</a></p>
-                    <p><a href="#">Perguntas Frequentes</a></p>
+                    <p><a href="https://leideacesso.etransparencia.com.br/jandira.prefeitura.sp/TDAPortalClient.aspx?417">Portal da Transparência</a></p>
+                    <p><a href="https://portal.jandira.sp.gov.br/Concursos">Concurso Público</a></p>
+                    <p><a href="https://portal.jandira.sp.gov.br/Decretos">Decretos Municipais</a></p>
+                    <p><a href="https://leismunicipais.com.br/legislacao-municipal/5019/leis-de-jandira/">Leis Municipais</a></p>
+                    <p><a href="https://portal.jandira.sp.gov.br/historia">Conheça Jandira</a></p>
+                    <p><a href="https://portal.jandira.sp.gov.br/Telefones">Telefones Úteis</a></p>
+                    <p><a href="https://portal.jandira.sp.gov.br/perguntas-frequentes">Perguntas Frequentes</a></p>
                 </div>
             </div>
 
